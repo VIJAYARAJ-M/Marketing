@@ -227,7 +227,7 @@ export default function Dash(){
   const [getdealdetails, setdealdetails] = useState ([]);
 
     useEffect(()=>{
-        fetch('',{
+        fetch('http://127.0.0.1:8000/core/demo',{
           method:"GET",
         })
         .then(Res=>Res.json())
@@ -236,7 +236,7 @@ export default function Dash(){
           const output1 = JSON.parse(obj1)
           
           setdealdetails(output1)
-          //console.log(output1)
+          console.log("result",output1)
           
         });
        
@@ -283,22 +283,25 @@ export default function Dash(){
             </Row>
 
             <Row className="mt-1">
-           <Col>
-           <Card style={{backgroundColor:""}}>
-           <Row>
-              <Col className="justify-content-center d-flex">
-              <h1 className="">99.8</h1>
-              </Col>
-            </Row>
-            <Row>
-              <Col className="justify-content-center d-flex">
-              <h3 className="">Delivery Rate(%)</h3>
-              </Col>
-            </Row>
-           
-          
-           </Card>
-           </Col>
+              {getdealdetails.map((item, index)=>(
+                <Col key={index}>
+                <Card style={{backgroundColor:""}}>
+                <Row>
+                    <Col className="justify-content-center d-flex" >
+                    <h1 className="">{item.firstname}</h1>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col className="justify-content-center d-flex">
+                    <h3 className="">Delivery Rate(%)</h3>
+                    </Col>
+                  </Row>
+                
+                
+                </Card>
+                  
+                </Col>
+              ))}
 
            <Col>
            <Card style={{backgroundColor:""}}>
